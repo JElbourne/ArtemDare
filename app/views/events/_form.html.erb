@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-section">
+    <%= form_with(model: event, local: true) do |form| %>
+      <% if event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+          <ul>
+            <% event.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="grid-x grid-padding-x">
+        <div class="medium-2 cell">
+          <%= form.label :name, class: "medium-text-right middle" %>
+        </div>
+        <div class="medium-10 cell">
+          <%= form.text_field :name, autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="medium-2 cell">
+          <%= form.label :startdate, class: "medium-text-right middle" %>
+        </div>
+        <div class="medium-10 cell">
+          <%= form.datetime_field :startdate, autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="medium-2 cell">
+          <%= form.label :enddate, class: "medium-text-right middle" %>
+        </div>
+        <div class="medium-10 cell">
+          <%= form.datetime_field :enddate, autocomplete: "off" %>
+        </div>
+      </div>
+
+      <div class="grid-x grid-padding-x">
+        <div class="medium-2 cell">
+          <%= form.label :description, class: "medium-text-right middle" %>
+        </div>
+        <div class="medium-10 cell">
+          <%= form.text_area :description, rows: 5, cols: 25, class: "tinymce" %>
+        </div>
+      </div>
+
+
+      <div class="grid-x grid-padding-x">
+        <div class="medium-10 medium-offset-2 cell">
+          <%= form.button "Add Event", type: :submit,  class: "button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= tinymce %>

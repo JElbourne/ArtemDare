@@ -1,0 +1,73 @@
+<h2>Sign up</h2>
+
+<div class="card">
+  <div class="card-section">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-2 cell">
+      <%= f.label :first_name, class: "medium-text-right middle" %>
+    </div>
+    <div class="medium-10 cell">
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-2 cell">
+      <%= f.label :last_name, class: "medium-text-right middle" %>
+    </div>
+    <div class="medium-10 cell">
+      <%= f.text_field :last_name, autocomplete: "last_name" %>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-2 cell">
+      <%= f.label :phone, class: "medium-text-right middle" %>
+    </div>
+    <div class="medium-10 cell">
+      <%= f.number_field :phone, autocomplete: "phone" %>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-2 cell">
+      <%= f.label :email, class: "medium-text-right middle" %>
+    </div>
+    <div class="medium-10 cell">
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-2 cell">
+      <%= f.label :password, class: "medium-text-right middle" %>
+    </div>
+    <div class="medium-10 cell">
+      <%= f.password_field :password, autocomplete: "off" %>
+      <% if @minimum_password_length %>
+        <p class="help-text" id="passwordHelpText">(<%= @minimum_password_length %> characters minimum)</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-2 cell">
+      <%= f.label :password_confirmation, class: "medium-text-right middle" %>
+    </div>
+    <div class="medium-10 cell">
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="medium-10 medium-offset-2 cell">
+      <%= f.button "Sign up", type: :submit,  class: "button" %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>

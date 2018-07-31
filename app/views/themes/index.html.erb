@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Themes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vote</th>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @themes.each do |theme| %>
+      <tr>
+        <td>
+          <div class="small button-group">
+            <%= link_to '-1', downvote_theme_path(theme), class: "button" %>
+            <%= link_to '+1', upvote_theme_path(theme), class: "button" %>
+          </div>
+        </td>
+        <td><%= theme.title %></td>
+        <td><%= link_to 'Show', theme %></td>
+        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
+        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Theme', new_theme_path %>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+    <div class="grid-container">
+      <div data-sticky-container>
+        <div class="title-bar" data-responsive-toggle="responsive-menu" >
+          <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+          <div class="title-bar-title">Menu</div>
+        </div>
+
+        <div class="top-bar" id="responsive-menu">
+          <div class="top-bar-left">
+            <ul class="menu">
+              <li class="menu-text">Artem Dare</li>
+            </ul>
+          </div>
+          <div class="top-bar-right">
+            <% if user_signed_in? %>
+              <ul class="dropdown menu" data-dropdown-menu>
+                <li>
+                  <%= link_to "Join Event", events_path, class: "button" %>
+                </li>
+                <li>
+                  <a><%= current_user.first_name %></a>
+                  <ul class="menu vertical">
+                    <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+                  </ul>
+                </li>
+              </ul>
+            <% else %>
+              <ul class="menu">
+                <li><%= link_to('Login', new_user_session_path)  %></li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-container">
+      <% flash.each do |key, value| %>
+        <div class="callout <%= key %>" data-closable>
+          <%= value %>
+          <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+      <%= yield %>
+
+      <div style="margin-top:300px;">
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+    </div>
+  </body>
+</html>
